@@ -8,3 +8,15 @@ dependency-reduced-pom.xml
 buildNumber.properties
 .mvn/timing.properties
 .mvn/wrapper/maven-wrapper.jar
+.idea/libraries
+**/mvnw
+**/mvnw.cmd
+**/.mvn
+.idea/encodings.xml
+**/target/
+.idea/*
+**/.gitignore
+.idea
+
+
+
