@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CodeInsightWorkspaceSettings">
+    <option name="optimizeImportsOnTheFly" value="true" />
+  </component>
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$PROJECT_DIR$/xiaomao-product/pom.xml" />
+        <option value="$PROJECT_DIR$/xiaomao-ware/pom.xml" />
+        <option value="$PROJECT_DIR$/xiaomao-order/pom.xml" />
+        <option value="$PROJECT_DIR$/xiaomao-member/pom.xml" />
+        <option value="$PROJECT_DIR$/xiaomao-coupon/pom.xml" />
+        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/xiaomao-gateway/pom.xml" />
+        <option value="$PROJECT_DIR$/xiaomao-third-party/pom.xml" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8 (2)" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/out" />
+  </component>
+</project>

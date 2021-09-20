@@ -1,0 +1,29 @@
+# 应用名称
+spring:
+  application:
+    name: xiaomao-product
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://localhost:3306/xiaomaomall-pms?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
+      username: root
+      password: root
+  cloud:
+    nacos:
+      server-addr: 192.168.10.88:8848
+#    alicloud:
+#      secret-key:
+#alicloud
+mybatis-plus:
+  mapper-locations: classpath:/mapper/**/*.xml
+  global-config:
+    db-config:
+      id-type: auto # 自增
+      logic-delete-value: 1 # 逻辑已删除值(默认为 1)
+      logic-not-delete-value: 0 # 逻辑未删除值(默认为 0)
+server:
+  port: 10000
+logging:
+  level:
+    com.xiaomao6.xiaomaoproduct: debug

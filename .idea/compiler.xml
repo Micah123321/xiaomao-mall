@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="xiaomao-third-party" />
+        <module name="xiaomao-order" />
+        <module name="xiaomao-ware" />
+        <module name="xiaomao-member" />
+        <module name="xiaomao-common" />
+        <module name="xiaomao-coupon" />
+        <module name="renren-fast" />
+        <module name="xiaomao-product" />
+        <module name="renren-generator" />
+        <module name="xiaomao-gateway" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="renren-fast" target="1.8" />
+      <module name="renren-generator" target="1.8" />
+      <module name="xiaomao-common" target="8" />
+      <module name="xiaomao-coupon" target="1.8" />
+      <module name="xiaomao-gateway" target="1.8" />
+      <module name="xiaomao-mall" target="1.5" />
+      <module name="xiaomao-member" target="1.8" />
+      <module name="xiaomao-order" target="1.8" />
+      <module name="xiaomao-product" target="1.8" />
+      <module name="xiaomao-third-party" target="1.8" />
+      <module name="xiaomao-ware" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="renren-fast" options="-parameters" />
+      <module name="renren-generator" options="-parameters" />
+    </option>
+  </component>
+</project>

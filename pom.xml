@@ -14,5 +14,10 @@
         <module>xiaomao-member</module>
         <module>xiaomao-product</module>
         <module>xiaomao-ware</module>
+        <module>renren-fast</module>
+        <module>renren-generator</module>
+        <module>xiaomao-common</module>
+        <module>xiaomao-third-party</module>
+        <module>xiaomao-gateway</module>
     </modules>
 </project>

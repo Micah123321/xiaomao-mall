@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/renren-fast/renren-fast.iml" filepath="$PROJECT_DIR$/renren-fast/renren-fast.iml" />
+      <module fileurl="file://$PROJECT_DIR$/renren-generator/renren-generator.iml" filepath="$PROJECT_DIR$/renren-generator/renren-generator.iml" />
+      <module fileurl="file://$PROJECT_DIR$/xiaomao-common/xiaomao-common.iml" filepath="$PROJECT_DIR$/xiaomao-common/xiaomao-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/xiaomao-coupon/xiaomao-coupon.iml" filepath="$PROJECT_DIR$/xiaomao-coupon/xiaomao-coupon.iml" />
+      <module fileurl="file://$PROJECT_DIR$/xiaomao-gateway/xiaomao-gateway.iml" filepath="$PROJECT_DIR$/xiaomao-gateway/xiaomao-gateway.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/xiaomao-mall.iml" filepath="$PROJECT_DIR$/.idea/xiaomao-mall.iml" />
+      <module fileurl="file://$PROJECT_DIR$/xiaomao-member/xiaomao-member.iml" filepath="$PROJECT_DIR$/xiaomao-member/xiaomao-member.iml" />
+      <module fileurl="file://$PROJECT_DIR$/xiaomao-order/xiaomao-order.iml" filepath="$PROJECT_DIR$/xiaomao-order/xiaomao-order.iml" />
+      <module fileurl="file://$PROJECT_DIR$/xiaomao-product/xiaomao-product.iml" filepath="$PROJECT_DIR$/xiaomao-product/xiaomao-product.iml" />
+      <module fileurl="file://$PROJECT_DIR$/xiaomao-third-party/xiaomao-third-party.iml" filepath="$PROJECT_DIR$/xiaomao-third-party/xiaomao-third-party.iml" />
+      <module fileurl="file://$PROJECT_DIR$/xiaomao-ware/xiaomao-ware.iml" filepath="$PROJECT_DIR$/xiaomao-ware/xiaomao-ware.iml" />
+    </modules>
+  </component>
+</project>
