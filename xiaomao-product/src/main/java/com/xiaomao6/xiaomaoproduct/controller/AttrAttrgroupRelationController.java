@@ -1,20 +1,16 @@
 package com.xiaomao6.xiaomaoproduct.controller;
 
-import java.util.Arrays;
+import com.xiaomao6.common.utils.PageUtils;
+import com.xiaomao6.common.utils.R;
+import com.xiaomao6.xiaomaoproduct.entity.AttrAttrgroupRelationEntity;
+import com.xiaomao6.xiaomaoproduct.service.AttrAttrgroupRelationService;
+import com.xiaomao6.xiaomaoproduct.vo.AttrGroupRelationVo;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
 import java.util.Map;
 
 //import org.apache.shiro.authz.annotation.RequiresPermissions;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-
-import com.xiaomao6.xiaomaoproduct.entity.AttrAttrgroupRelationEntity;
-import com.xiaomao6.xiaomaoproduct.service.AttrAttrgroupRelationService;
-import com.xiaomao6.common.utils.PageUtils;
-import com.xiaomao6.common.utils.R;
 
 
 
@@ -79,11 +75,11 @@ public class AttrAttrgroupRelationController {
     /**
      * 删除
      */
-    @RequestMapping("/delete")
-   // @RequiresPermissions("xiaomaoproduct:attrattrgrouprelation:delete")
-    public R delete(@RequestBody Long[] ids){
-		attrAttrgroupRelationService.removeByIds(Arrays.asList(ids));
-
+    @PostMapping("/delete")
+    //[{"attrId":1,"attrGroupId":2}]
+    public R delete(@RequestBody AttrGroupRelationVo[] relationVos){
+//		attrAttrgroupRelationService.removeByIds(Arrays.asList(ids));
+		attrAttrgroupRelationService.deleteByRelationVos(relationVos);
         return R.ok();
     }
 

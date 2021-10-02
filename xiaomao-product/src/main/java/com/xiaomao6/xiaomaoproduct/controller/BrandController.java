@@ -36,7 +36,8 @@ public class BrandController {
     @RequestMapping("/list")
     // @RequiresPermissions("xiaomaoproduct:brand:list")
     public R list(@RequestParam Map<String, Object> params) {
-        PageUtils page = brandService.queryPage(params);
+//        PageUtils page = brandService.queryPage(params);
+        PageUtils page=brandService.getListByKey(params);
 
         return R.ok().put("page", page);
     }
@@ -79,7 +80,8 @@ public class BrandController {
     @RequestMapping("/update")
     // @RequiresPermissions("xiaomaoproduct:brand:update")
     public R update(@Validated(UpdateGroup.class) @RequestBody BrandEntity brand) {
-        brandService.updateById(brand);
+//        brandService.updateById(brand);
+        brandService.updateDetail(brand);
         return R.ok();
     }
 

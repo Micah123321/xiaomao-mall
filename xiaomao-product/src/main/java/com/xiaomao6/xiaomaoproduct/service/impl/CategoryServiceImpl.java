@@ -5,9 +5,12 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.xiaomao6.common.utils.PageUtils;
 import com.xiaomao6.common.utils.Query;
+import com.xiaomao6.xiaomaoproduct.dao.CategoryBrandRelationDao;
 import com.xiaomao6.xiaomaoproduct.dao.CategoryDao;
+import com.xiaomao6.xiaomaoproduct.entity.CategoryBrandRelationEntity;
 import com.xiaomao6.xiaomaoproduct.entity.CategoryEntity;
 import com.xiaomao6.xiaomaoproduct.service.CategoryService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -17,6 +20,8 @@ import java.util.stream.Collectors;
 @Service("categoryService")
 public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity> implements CategoryService {
 
+    @Autowired
+    CategoryBrandRelationDao categoryBrandRelationDao;
     @Override
     public PageUtils queryPage(Map<String, Object> params) {
         IPage<CategoryEntity> page = this.page(
@@ -52,6 +57,17 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity
         Collections.reverse(list);
         return list.toArray(new Long[list.size()]);
     }
+
+    @Override
+    public void updateDetail(CategoryEntity category) {
+        //TODO 可能存在的其他表的冗余字段,待更新
+        this.updateById(category);
+        categoryBrandRelationDao.update(
+                new CategoryBrandRelationEntity().setCatelogName(category.getName()).setCatelogId(category.getCatId()),
+                new QueryWrapper<CategoryBrandRelationEntity>().eq("catelog_id",category.getCatId())
+        );
+    }
+
     private void getCatePath(Long catId,ArrayList<Long> list){
         list.add(catId);
         CategoryEntity byId = this.getById(catId);

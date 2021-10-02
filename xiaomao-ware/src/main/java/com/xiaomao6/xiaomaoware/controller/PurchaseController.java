@@ -1,20 +1,19 @@
 package com.xiaomao6.xiaomaoware.controller;
 
+import com.xiaomao6.common.utils.PageUtils;
+import com.xiaomao6.common.utils.R;
+import com.xiaomao6.xiaomaoware.entity.PurchaseEntity;
+import com.xiaomao6.xiaomaoware.service.PurchaseService;
+import com.xiaomao6.xiaomaoware.vo.MergePurchaseVo;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
 import java.util.Arrays;
+import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 //import org.apache.shiro.authz.annotation.RequiresPermissions;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-
-import com.xiaomao6.xiaomaoware.entity.PurchaseEntity;
-import com.xiaomao6.xiaomaoware.service.PurchaseService;
-import com.xiaomao6.common.utils.PageUtils;
-import com.xiaomao6.common.utils.R;
 
 
 
@@ -31,10 +30,39 @@ public class PurchaseController {
     @Autowired
     private PurchaseService purchaseService;
 
+    ///ware/purchase/merge
+    @PostMapping("/merge")
+    public R merge(@RequestBody MergePurchaseVo mergePurchaseVo){
+        purchaseService.mergePurchase(mergePurchaseVo);
+        return R.ok();
+    }
+
+    ///ware/purchase/received
+    @PostMapping("/received")
+    public R received(@RequestBody List<Long> ids){
+        //领取采购单方法
+        purchaseService.received(ids);
+        return R.ok();
+    }
+
+
+    //unreceive/list
+    /**
+     * 新建和已分配列表
+     */
+    @GetMapping("unreceive/list")
+    // @RequiresPermissions("xiaomaoware:purchase:list")
+    public R unReceiveList(@RequestParam Map<String, Object> params){
+        PageUtils page = purchaseService.queryPageUnReceive(params);
+
+        return R.ok().put("page", page);
+    }
+
+
     /**
      * 列表
      */
-    @RequestMapping("/list")
+    @GetMapping("/list")
    // @RequiresPermissions("xiaomaoware:purchase:list")
     public R list(@RequestParam Map<String, Object> params){
         PageUtils page = purchaseService.queryPage(params);
@@ -60,8 +88,9 @@ public class PurchaseController {
     @RequestMapping("/save")
    // @RequiresPermissions("xiaomaoware:purchase:save")
     public R save(@RequestBody PurchaseEntity purchase){
-		purchaseService.save(purchase);
-
+		purchaseService.save(purchase
+                .setCreateTime(new Date())
+                .setUpdateTime(new Date()));
         return R.ok();
     }
 
@@ -72,7 +101,6 @@ public class PurchaseController {
    // @RequiresPermissions("xiaomaoware:purchase:update")
     public R update(@RequestBody PurchaseEntity purchase){
 		purchaseService.updateById(purchase);
-
         return R.ok();
     }
 

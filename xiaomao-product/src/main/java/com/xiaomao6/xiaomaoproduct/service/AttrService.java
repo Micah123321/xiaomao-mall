@@ -3,6 +3,7 @@ package com.xiaomao6.xiaomaoproduct.service;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.xiaomao6.common.utils.PageUtils;
 import com.xiaomao6.xiaomaoproduct.entity.AttrEntity;
+import com.xiaomao6.xiaomaoproduct.vo.AttrVo;
 
 import java.util.Map;
 
@@ -16,5 +17,15 @@ import java.util.Map;
 public interface AttrService extends IService<AttrEntity> {
 
     PageUtils queryPage(Map<String, Object> params);
+
+    void saveInGroup(AttrVo attr);
+
+    PageUtils queryPageByCatelog(Map<String, Object> params, Long catelogId, String attrType);
+
+    AttrEntity getDetailById(Long attrId);
+
+    void updateDetail(AttrVo attr);
+
+    PageUtils getNoRelationPage(Map<String, Object> params, Long attrgroupId);
 }
 

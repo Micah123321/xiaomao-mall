@@ -1,7 +1,11 @@
 # 应用名称
 spring:
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+    default-property-inclusion: NON_NULL
   application:
-    name: xiaomao-product
+    name: xiaomao-ware
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     druid:
@@ -9,11 +13,18 @@ spring:
       url: jdbc:mysql://localhost:3306/xiaomaomall-wms?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
       username: root
       password: root
+  cloud:
+    nacos:
+      server-addr: 127.0.0.1:8848
 mybatis-plus:
   mapper-locations: classpath:/mapper/**/*.xml
   global-config:
     db-config:
       id-type: auto
-
+#      logic-delete-value: 1 # 逻辑已删除值(默认为 1)
+#      logic-not-delete-value: 0 # 逻辑未删除值(默认为 0)
 server:
   port: 11000
+logging:
+  level:
+    com.xiaomao6: debug

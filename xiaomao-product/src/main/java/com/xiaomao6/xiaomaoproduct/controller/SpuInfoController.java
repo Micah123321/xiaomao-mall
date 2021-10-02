@@ -1,20 +1,17 @@
 package com.xiaomao6.xiaomaoproduct.controller;
 
+import com.xiaomao6.common.utils.PageUtils;
+import com.xiaomao6.common.utils.R;
+import com.xiaomao6.xiaomaoproduct.entity.SpuInfoEntity;
+import com.xiaomao6.xiaomaoproduct.service.SpuInfoService;
+import com.xiaomao6.xiaomaoproduct.vo.SaveSpuVo;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
 import java.util.Arrays;
 import java.util.Map;
 
 //import org.apache.shiro.authz.annotation.RequiresPermissions;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-
-import com.xiaomao6.xiaomaoproduct.entity.SpuInfoEntity;
-import com.xiaomao6.xiaomaoproduct.service.SpuInfoService;
-import com.xiaomao6.common.utils.PageUtils;
-import com.xiaomao6.common.utils.R;
 
 
 
@@ -35,10 +32,8 @@ public class SpuInfoController {
      * 列表
      */
     @RequestMapping("/list")
-   // @RequiresPermissions("xiaomaoproduct:spuinfo:list")
     public R list(@RequestParam Map<String, Object> params){
-        PageUtils page = spuInfoService.queryPage(params);
-
+        PageUtils page = spuInfoService.queryPageByParams(params);
         return R.ok().put("page", page);
     }
 
@@ -59,9 +54,8 @@ public class SpuInfoController {
      */
     @RequestMapping("/save")
    // @RequiresPermissions("xiaomaoproduct:spuinfo:save")
-    public R save(@RequestBody SpuInfoEntity spuInfo){
-		spuInfoService.save(spuInfo);
-
+    public R save(@RequestBody SaveSpuVo saveSpuVo){
+		spuInfoService.saveSpuVo(saveSpuVo);
         return R.ok();
     }
 

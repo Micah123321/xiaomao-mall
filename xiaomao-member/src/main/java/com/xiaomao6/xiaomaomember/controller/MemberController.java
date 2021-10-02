@@ -34,6 +34,11 @@ public class MemberController {
     @Autowired
     private CouponFeignService couponFeignService;
 
+    ///member/memberlevel/list
+
+
+
+
     /**
      * 得到一个账户下的虚假的优惠券
      *
@@ -59,11 +64,10 @@ public class MemberController {
     /**
      * 列表
      */
-    @RequestMapping("/list")
+    @RequestMapping("memberlevel/list")
     // @RequiresPermissions("xiaomaomember:member:list")
     public R list(@RequestParam Map<String, Object> params) {
         PageUtils page = memberService.queryPage(params);
-
         return R.ok().put("page", page);
     }
 
