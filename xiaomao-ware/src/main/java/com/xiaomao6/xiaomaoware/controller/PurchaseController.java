@@ -5,7 +5,9 @@ import com.xiaomao6.common.utils.R;
 import com.xiaomao6.xiaomaoware.entity.PurchaseEntity;
 import com.xiaomao6.xiaomaoware.service.PurchaseService;
 import com.xiaomao6.xiaomaoware.vo.MergePurchaseVo;
+import com.xiaomao6.xiaomaoware.vo.PurchaseDoneVo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
@@ -30,6 +32,12 @@ public class PurchaseController {
     @Autowired
     private PurchaseService purchaseService;
 
+    //`/ware/purchase/done`
+    @PostMapping("/done")
+    public R done(@Validated @RequestBody PurchaseDoneVo purchaseDoneVo){
+        purchaseService.done(purchaseDoneVo);
+        return R.ok();
+    }
     ///ware/purchase/merge
     @PostMapping("/merge")
     public R merge(@RequestBody MergePurchaseVo mergePurchaseVo){

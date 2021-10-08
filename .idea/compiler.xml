@@ -14,6 +14,7 @@
         <module name="xiaomao-common" />
         <module name="xiaomao-coupon" />
         <module name="renren-fast" />
+        <module name="xiaomao-search" />
         <module name="xiaomao-product" />
         <module name="renren-generator" />
         <module name="xiaomao-gateway" />
@@ -29,6 +30,7 @@
       <module name="xiaomao-member" target="1.8" />
       <module name="xiaomao-order" target="1.8" />
       <module name="xiaomao-product" target="1.8" />
+      <module name="xiaomao-search" target="1.8" />
       <module name="xiaomao-third-party" target="1.8" />
       <module name="xiaomao-ware" target="1.8" />
     </bytecodeTargetLevel>

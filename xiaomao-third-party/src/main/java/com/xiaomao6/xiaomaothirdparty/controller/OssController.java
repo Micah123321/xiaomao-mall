@@ -36,6 +36,13 @@ public class OssController {
     @Value("${spring.cloud.alicloud.access-key}")
     String accessId = "";
 
+//    @PostMapping("oss/upload")
+//    public R uploadToOss(@RequestBody Multi){
+//
+//
+//        return R.ok();
+//    }
+
     @RequestMapping("oss/sign")
     public R signPost(){
         String host = "https://" + bucket + "." + endpoint; // host的格式为 bucketname.endpoint

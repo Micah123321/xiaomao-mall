@@ -43,6 +43,13 @@ spring:
           filters:
             - RewritePath=/api/?(?<segment>.*), /xiaomao$\{segment}
 
+        - id: product-s
+          uri: lb://xiaomao-product
+          predicates:
+            - Path=/api/product/**
+          filters:
+            - RewritePath=/api/?(?<segment>.*), /xiaomao$\{segment}
+
         - id: third-party
           uri: lb://xiaomao-third-party
           predicates:

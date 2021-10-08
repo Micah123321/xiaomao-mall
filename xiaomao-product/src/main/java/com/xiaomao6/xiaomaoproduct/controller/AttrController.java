@@ -1,14 +1,19 @@
 package com.xiaomao6.xiaomaoproduct.controller;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.xiaomao6.common.utils.PageUtils;
 import com.xiaomao6.common.utils.R;
 import com.xiaomao6.xiaomaoproduct.entity.AttrEntity;
+import com.xiaomao6.xiaomaoproduct.entity.ProductAttrValueEntity;
 import com.xiaomao6.xiaomaoproduct.service.AttrService;
+import com.xiaomao6.xiaomaoproduct.service.ProductAttrValueService;
 import com.xiaomao6.xiaomaoproduct.vo.AttrVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 //import org.apache.shiro.authz.annotation.RequiresPermissions;
@@ -27,6 +32,26 @@ public class AttrController {
     @Autowired
     private AttrService attrService;
 
+    @Resource
+    ProductAttrValueService productAttrValueService;
+
+    //`/product/attr/update/{spuId}`
+    @PostMapping("/update/{spuId}")
+    public R updateAttr(@PathVariable("spuId") Long spuId, @RequestBody List<ProductAttrValueEntity> list) {
+        productAttrValueService.updateAttr(spuId, list);
+        return R.ok();
+    }
+
+
+    ///product/attr/base/listforspu/{spuId}
+    @GetMapping("/base/listforspu/{spuId}")
+    public R listForSpu(@PathVariable("spuId") Long spuId) {
+        return R.ok().put("data", productAttrValueService
+                .list(new QueryWrapper<ProductAttrValueEntity>().eq("spu_id", spuId)));
+
+
+    }
+
     /**
      * 列表
      */
@@ -34,7 +59,6 @@ public class AttrController {
     // @RequiresPermissions("xiaomaoproduct:attr:list")
     public R list(@RequestParam Map<String, Object> params) {
         PageUtils page = attrService.queryPage(params);
-
         return R.ok().put("page", page);
     }
 
@@ -46,7 +70,7 @@ public class AttrController {
     public R baseList(@RequestParam Map<String, Object> params,
                       @PathVariable("catelogId") Long catelogId,
                       @PathVariable("attrType") String attrType) {
-        PageUtils page = attrService.queryPageByCatelog(params,catelogId,attrType);
+        PageUtils page = attrService.queryPageByCatelog(params, catelogId, attrType);
 
         return R.ok().put("page", page);
     }
@@ -59,7 +83,7 @@ public class AttrController {
     //@RequiresPermissions("xiaomaoproduct:attr:info")
     public R info(@PathVariable("attrId") Long attrId) {
 //        AttrEntity attr = attrService.getById(attrId);
-        AttrEntity attr=attrService.getDetailById(attrId);
+        AttrEntity attr = attrService.getDetailById(attrId);
 
         return R.ok().put("attr", attr);
     }

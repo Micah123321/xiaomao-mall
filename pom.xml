@@ -19,5 +19,6 @@
         <module>xiaomao-common</module>
         <module>xiaomao-third-party</module>
         <module>xiaomao-gateway</module>
+        <module>xiaomao-search</module>
     </modules>
 </project>

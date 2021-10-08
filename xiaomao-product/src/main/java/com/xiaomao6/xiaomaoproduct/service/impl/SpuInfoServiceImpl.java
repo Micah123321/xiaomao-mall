@@ -91,6 +91,7 @@ public class SpuInfoServiceImpl extends ServiceImpl<SpuInfoDao, SpuInfoEntity> i
                 .map(e -> new SpuImagesEntity()
                         .setSpuId(spuInfoEntity.getId())
                         .setImgUrl(e))
+                .filter(e->e.getImgUrl()!=null)
                 .filter(e -> !StringUtil.isEmpty(e.getImgUrl().trim()))
                 .collect(Collectors.toList());
         spuImagesService.saveBatch(imgCollect);
@@ -143,6 +144,8 @@ public class SpuInfoServiceImpl extends ServiceImpl<SpuInfoDao, SpuInfoEntity> i
                     .setDefaultImg(e.getDefaultImg())
                     .setSkuId(skuInfoEntity.getSkuId())
                     .setImgUrl(e.getImgUrl()))
+                    .filter(e->e.getImgUrl()!=null)
+                    .filter(e -> !StringUtil.isEmpty(e.getImgUrl().trim()))
                     .collect(Collectors.toList());
 
             skuImagesService.saveBatch(skuImagesEntityList);
