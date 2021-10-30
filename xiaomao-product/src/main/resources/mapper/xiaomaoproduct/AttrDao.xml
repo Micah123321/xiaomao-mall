@@ -3,7 +3,7 @@
 
 <mapper namespace="com.xiaomao6.xiaomaoproduct.dao.AttrDao">
 
-	<!-- 可根据自己的需求，是否要使用 -->
+    <!-- 可根据自己的需求，是否要使用 -->
     <resultMap type="com.xiaomao6.xiaomaoproduct.entity.AttrEntity" id="attrMap">
         <result property="attrId" column="attr_id"/>
         <result property="attrName" column="attr_name"/>
@@ -15,6 +15,25 @@
         <result property="catelogId" column="catelog_id"/>
         <result property="showDesc" column="show_desc"/>
     </resultMap>
+    <select id="selectByListId" resultType="com.xiaomao6.xiaomaoproduct.entity.AttrEntity">
+        SELECT
+        `attr_id`,
+        `attr_name`,
+        `search_type`,
+        `icon`,
+        `value_select`,
+        `attr_type`,
+        `enable`,
+        `catelog_id`,
+        `show_desc`,
+        `value_type`
+        FROM
+        `xiaomaomall-pms`.`pms_attr`
+        WHERE attr_id IN
+        <foreach collection="ids" item="list" open="(" close=")" separator=",">
+            #{list}
+        </foreach>
+    </select>
 
 
 </mapper>

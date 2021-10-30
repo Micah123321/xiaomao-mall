@@ -1,7 +1,7 @@
 # 应用名称
 spring:
   application:
-    name: xiaomao-product
+    name: xiaomao-order
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     druid:

@@ -1,20 +1,18 @@
 package com.xiaomao6.xiaomaoware.controller;
 
+import com.xiaomao6.common.utils.PageUtils;
+import com.xiaomao6.common.utils.R;
+import com.xiaomao6.xiaomaoware.entity.WareSkuEntity;
+import com.xiaomao6.xiaomaoware.service.WareSkuService;
+import com.xiaomao6.common.to.StockTo;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 //import org.apache.shiro.authz.annotation.RequiresPermissions;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-
-import com.xiaomao6.xiaomaoware.entity.WareSkuEntity;
-import com.xiaomao6.xiaomaoware.service.WareSkuService;
-import com.xiaomao6.common.utils.PageUtils;
-import com.xiaomao6.common.utils.R;
 
 
 
@@ -30,6 +28,16 @@ import com.xiaomao6.common.utils.R;
 public class WareSkuController {
     @Autowired
     private WareSkuService wareSkuService;
+
+    //根据ids返回库存信息
+    @PostMapping("/stock")
+    public R<List<StockTo>> checkStock(@RequestBody List<Long> ids){
+        List<StockTo> list=wareSkuService.selectStock(ids);
+        R<List<StockTo>> ok =R.ok();
+        ok.put("data",list);
+        ok.setData(list);
+        return ok;
+    }
 
     /**
      * 列表

@@ -23,8 +23,6 @@ import java.io.Serializable;
  * @date 2021-09-15 19:16:10
  */
 @Accessors(chain = true)
-@Getter
-@Setter
 @Data
 @TableName("pms_brand")
 public class BrandEntity implements Serializable {

@@ -1,11 +1,3 @@
-/**
- * Copyright (c) 2016-2019 人人开源 All rights reserved.
- *
- * https://www.renren.io
- *
- * 版权所有，侵权必究！
- */
-
 package com.xiaomao6.common.utils;
 
 import org.apache.http.HttpStatus;
@@ -16,10 +8,20 @@ import java.util.Map;
 /**
  * 返回数据
  *
- * @author Mark sunlightcs@gmail.com
+ * @author Micah
  */
-public class R extends HashMap<String, Object> {
+public class R<T> extends HashMap<String, Object> {
 	private static final long serialVersionUID = 1L;
+
+	private T data;
+
+	public T getData() {
+		return data;
+	}
+
+	public void setData(T data) {
+		this.data = data;
+	}
 
 	public R() {
 		put("code", 0);
@@ -39,6 +41,9 @@ public class R extends HashMap<String, Object> {
 		r.put("code", code);
 		r.put("msg", msg);
 		return r;
+	}
+	public static R check(boolean b, Integer code,String msg){
+		return b?R.ok():R.error(code,msg);
 	}
 
 	public static R ok(String msg) {

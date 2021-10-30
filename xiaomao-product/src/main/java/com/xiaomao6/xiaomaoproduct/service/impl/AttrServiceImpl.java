@@ -222,4 +222,9 @@ public class AttrServiceImpl extends ServiceImpl<AttrDao, AttrEntity> implements
         return new PageUtils(page);
     }
 
+    @Override
+    public List<AttrEntity> selectByListId(List<Long> ids) {
+        return baseMapper.selectByListId(ids);
+    }
+
 }

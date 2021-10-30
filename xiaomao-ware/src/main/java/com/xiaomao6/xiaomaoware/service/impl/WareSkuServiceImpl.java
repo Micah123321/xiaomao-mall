@@ -8,10 +8,13 @@ import com.xiaomao6.common.utils.Query;
 import com.xiaomao6.xiaomaoware.dao.WareSkuDao;
 import com.xiaomao6.xiaomaoware.entity.WareSkuEntity;
 import com.xiaomao6.xiaomaoware.service.WareSkuService;
+import com.xiaomao6.common.to.StockTo;
 import org.eclipse.jetty.util.StringUtil;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 
 @Service("wareSkuService")
@@ -42,6 +45,20 @@ public class WareSkuServiceImpl extends ServiceImpl<WareSkuDao, WareSkuEntity> i
         );
 
         return new PageUtils(page);
+    }
+
+    @Override
+    public List<StockTo> selectStock(List<Long> ids) {
+        return ids.stream()
+                .map(e -> {
+                    Integer hasStock = baseMapper.getHasStock(e);
+                    StockTo stockTo = new StockTo().setSkuId(e);
+                    if (hasStock != null && hasStock > 0) {
+                        stockTo.setHasStock(true);
+                    }
+                    return stockTo;
+                })
+                .collect(Collectors.toList());
     }
 
 }

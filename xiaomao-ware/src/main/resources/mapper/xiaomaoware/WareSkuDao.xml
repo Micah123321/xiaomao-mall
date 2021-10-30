@@ -12,6 +12,9 @@
         <result property="skuName" column="sku_name"/>
         <result property="stockLocked" column="stock_locked"/>
     </resultMap>
+    <select id="getHasStock" resultType="java.lang.Integer">
+        SELECT SUM(stock-stock_locked) FROM wms_ware_sku WHERE sku_id=#{e}
+    </select>
 
 
 </mapper>

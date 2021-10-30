@@ -5,6 +5,7 @@ import com.xiaomao6.common.utils.PageUtils;
 import com.xiaomao6.xiaomaoproduct.entity.AttrEntity;
 import com.xiaomao6.xiaomaoproduct.vo.AttrVo;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -27,5 +28,7 @@ public interface AttrService extends IService<AttrEntity> {
     void updateDetail(AttrVo attr);
 
     PageUtils getNoRelationPage(Map<String, Object> params, Long attrgroupId);
+
+    List<AttrEntity> selectByListId(List<Long> ids);
 }
 
