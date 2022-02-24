@@ -1,5 +1,7 @@
 package com.xiaomao6.common.utils;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.TypeReference;
 import org.apache.http.HttpStatus;
 
 import java.util.HashMap;
@@ -10,17 +12,29 @@ import java.util.Map;
  *
  * @author Micah
  */
-public class R<T> extends HashMap<String, Object> {
+public class R extends HashMap<String, Object> {
 	private static final long serialVersionUID = 1L;
 
-	private T data;
-
-	public T getData() {
-		return data;
+	/**
+	 * 设置数据
+	 * @param data 数据
+	 * @return 本身
+	 */
+	public R setData(Object data){
+		put("data",data);
+		return this;
 	}
 
-	public void setData(T data) {
-		this.data = data;
+	/**
+	 * 获取数据
+	 * @param typeReference 要被转换的类型
+	 * @param <T> 想要拿到的类型
+	 * @return 转换好的数据
+	 */
+	public <T> T getData(TypeReference<T> typeReference){
+		Object data = get("data");
+		String s = JSON.toJSONString(data);
+		return JSON.parseObject(s, typeReference);
 	}
 
 	public R() {
@@ -42,6 +56,14 @@ public class R<T> extends HashMap<String, Object> {
 		r.put("msg", msg);
 		return r;
 	}
+
+	/**
+	 * 检测对应b,然后返回对应的R
+	 * @param b bool
+	 * @param code 错误码
+	 * @param msg 错误信息
+	 * @return 封装好的R
+	 */
 	public static R check(boolean b, Integer code,String msg){
 		return b?R.ok():R.error(code,msg);
 	}

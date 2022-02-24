@@ -7,15 +7,14 @@ import com.xiaomao6.xiaomaoware.service.PurchaseService;
 import com.xiaomao6.xiaomaoware.vo.MergePurchaseVo;
 import com.xiaomao6.xiaomaoware.vo.PurchaseDoneVo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
-//import org.apache.shiro.authz.annotation.RequiresPermissions;
 
 
 
@@ -34,7 +33,7 @@ public class PurchaseController {
 
     //`/ware/purchase/done`
     @PostMapping("/done")
-    public R done(@Validated @RequestBody PurchaseDoneVo purchaseDoneVo){
+    public R done(@Valid @RequestBody PurchaseDoneVo purchaseDoneVo){
         purchaseService.done(purchaseDoneVo);
         return R.ok();
     }

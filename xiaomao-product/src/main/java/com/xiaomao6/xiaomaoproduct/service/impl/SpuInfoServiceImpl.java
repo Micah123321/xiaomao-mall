@@ -1,5 +1,6 @@
 package com.xiaomao6.xiaomaoproduct.service.impl;
 
+import com.alibaba.fastjson.TypeReference;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -27,7 +28,6 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.annotation.Resource;
 import java.math.BigDecimal;
 import java.util.Date;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -266,14 +266,23 @@ public class SpuInfoServiceImpl extends ServiceImpl<SpuInfoDao, SpuInfoEntity> i
         }).collect(Collectors.toList());
         List<Long> skuIds = skus.stream().map(SkuInfoEntity::getSkuId).collect(Collectors.toList());
         //调用远程端口查询库存
-        R<List<StockTo>> r = null;
+        R r = null;
         try {
             r = wareFeignService.checkStock(skuIds);
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        Map<Long,Boolean> stockMap;
+        //想要被转换的类型
+        //因为是个内部保护类 所以需要new xxx(){
+        // } 添加方法体
+        TypeReference<List<StockTo>> typeReference = new TypeReference<List<StockTo>>(){};
+
         assert r != null;
-        List<LinkedHashMap<String,Object>> stockList = (List<LinkedHashMap<String, Object>>) r.get("data");
+        //这里语法糖,将list转换为map
+        stockMap=r.getData(typeReference).stream().collect(Collectors.toMap(StockTo::getSkuId,StockTo::getHasStock));
+        Map<Long, Boolean> finalStockMap = stockMap;
         list = skus.stream().map(e -> {
             SkuEsModel skuEsModel = new SkuEsModel();
             BeanUtils.copyProperties(e, skuEsModel);
@@ -296,14 +305,9 @@ public class SpuInfoServiceImpl extends ServiceImpl<SpuInfoDao, SpuInfoEntity> i
                     .setAttrs(attrCollect)//设置属性
             ;
 
-            //设置当前库存
-            stockList.forEach(g -> {
-                Long skuId = ((Integer) g.get("skuId")).longValue();
-                //TODO int 不能转换为 long
-                Boolean hasStock = (Boolean) g.get("hasStock");
-                if (skuId.equals(e.getSkuId()))
-                    skuEsModel.setHasStock(hasStock);
-            });
+            //设置当前库存 如果存在则设置对应的库存
+            if(finalStockMap.containsKey(e.getSkuId()))
+                skuEsModel.setHasStock(finalStockMap.get(e.getSkuId()));
 
 
             return skuEsModel;

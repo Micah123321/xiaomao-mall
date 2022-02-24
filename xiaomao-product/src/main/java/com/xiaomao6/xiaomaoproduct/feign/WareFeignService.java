@@ -1,6 +1,5 @@
 package com.xiaomao6.xiaomaoproduct.feign;
 
-import com.xiaomao6.common.to.StockTo;
 import com.xiaomao6.common.utils.R;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,5 +17,5 @@ import java.util.List;
 @FeignClient("xiaomao-ware")
 public interface WareFeignService {
     @PostMapping("xiaomaoware/waresku/stock")
-    R<List<StockTo>> checkStock(@RequestBody List<Long> ids);
+    R checkStock(@RequestBody List<Long> ids);
 }

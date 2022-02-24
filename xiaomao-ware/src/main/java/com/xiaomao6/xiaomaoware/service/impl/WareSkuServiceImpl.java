@@ -25,6 +25,7 @@ public class WareSkuServiceImpl extends ServiceImpl<WareSkuDao, WareSkuEntity> i
         QueryWrapper<WareSkuEntity> queryWrapper = new QueryWrapper<>();
 
         /**
+         * 查询分页 判断条件
          * skuId:
          * wareId:
          */
@@ -47,12 +48,18 @@ public class WareSkuServiceImpl extends ServiceImpl<WareSkuDao, WareSkuEntity> i
         return new PageUtils(page);
     }
 
+    /**
+     * 查询库存
+     * @param ids id集合
+     * @return 库存集合
+     */
     @Override
     public List<StockTo> selectStock(List<Long> ids) {
         return ids.stream()
                 .map(e -> {
                     Integer hasStock = baseMapper.getHasStock(e);
                     StockTo stockTo = new StockTo().setSkuId(e);
+                    //如果库存大于0 则设置有库存
                     if (hasStock != null && hasStock > 0) {
                         stockTo.setHasStock(true);
                     }

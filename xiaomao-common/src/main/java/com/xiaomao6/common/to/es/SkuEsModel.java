@@ -7,6 +7,7 @@ import java.math.BigDecimal;
 import java.util.List;
 
 /**
+ * 存放到es中的类型
  * @ClassName SkuEsModel
  * @Description 简介
  * @Author Micah

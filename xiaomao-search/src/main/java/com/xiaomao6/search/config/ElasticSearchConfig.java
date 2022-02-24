@@ -34,6 +34,6 @@ public class ElasticSearchConfig {
     public RestHighLevelClient getClient(){
         return new RestHighLevelClient(
                 RestClient.builder(
-                        new HttpHost("www.xiaomao6.cn", 9200, "http")));
+                        new HttpHost("1.117.57.143", 9200, "http")));
     }
 }

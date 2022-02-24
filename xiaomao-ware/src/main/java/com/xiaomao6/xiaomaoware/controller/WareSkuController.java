@@ -31,12 +31,9 @@ public class WareSkuController {
 
     //根据ids返回库存信息
     @PostMapping("/stock")
-    public R<List<StockTo>> checkStock(@RequestBody List<Long> ids){
+    public R checkStock(@RequestBody List<Long> ids){
         List<StockTo> list=wareSkuService.selectStock(ids);
-        R<List<StockTo>> ok =R.ok();
-        ok.put("data",list);
-        ok.setData(list);
-        return ok;
+        return R.ok().setData(list);
     }
 
     /**

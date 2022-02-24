@@ -14,5 +14,5 @@ import lombok.experimental.Accessors;
 @Accessors(chain = true)
 public class StockTo {
     private Long skuId;
-    private Boolean hasStock;
+    private Boolean hasStock=false;
 }
