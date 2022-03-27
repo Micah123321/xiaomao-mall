@@ -18,7 +18,7 @@ spring:
         - id: product
           uri: lb://xiaomao-product
           predicates:
-            - Path=/api/xiaomaoproduct/**
+            - Path=/api/xiaomaoproduct/**,/hello,/index/**
           filters:
             - RewritePath=/api/?(?<segment>.*), /$\{segment}
 
@@ -63,6 +63,17 @@ spring:
             - Path=/api/**
           filters:
             - RewritePath=/api/?(?<segment>.*), /renren-fast/$\{segment}
+
+        - id: product_proxy_host
+          uri: lb://xiaomao-product
+          predicates:
+            - Host=xiaomaomall.com
+
+
+        - id: search_proxy_host
+          uri: lb://xiaomao-search
+          predicates:
+            - Host=search.xiaomaomall.com
     nacos:
       server-addr: 127.0.0.1:8848
 server:

@@ -42,4 +42,9 @@ public class ProductAttrValueServiceImpl extends ServiceImpl<ProductAttrValueDao
 //        this.saveBatch()
     }
 
+    @Override
+    public List<ProductAttrValueEntity> selectByListId(List<Long> ids) {
+        return baseMapper.selectByListId(ids);
+    }
+
 }

@@ -13,6 +13,24 @@
         <result property="attrSort" column="attr_sort"/>
         <result property="quickShow" column="quick_show"/>
     </resultMap>
+    <select id="selectByListId" resultType="com.xiaomao6.xiaomaoproduct.entity.ProductAttrValueEntity">
+
+        SELECT
+            `id`,
+            `spu_id`,
+            `attr_id`,
+            `attr_name`,
+            `attr_value`,
+            `attr_sort`,
+            `quick_show`
+        FROM
+            `xiaomaomall-pms`.`pms_product_attr_value`
+        WHERE attr_id IN
+        <foreach collection="ids" item="list" open="(" close=")" separator=",">
+            #{list}
+        </foreach>
+
+    </select>
 
 
 </mapper>

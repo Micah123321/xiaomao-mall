@@ -3,6 +3,7 @@ package com.xiaomao6.xiaomaoproduct.service;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.xiaomao6.common.utils.PageUtils;
 import com.xiaomao6.xiaomaoproduct.entity.CategoryEntity;
+import com.xiaomao6.xiaomaoproduct.vo.Category2Vo;
 
 import java.util.List;
 import java.util.Map;
@@ -25,5 +26,10 @@ public interface CategoryService extends IService<CategoryEntity> {
     Long[] getCatelogPath(Long catId);
 
     void updateDetail(CategoryEntity category);
+
+    List<CategoryEntity> getLevel1Category();
+
+    Map<String, List<Category2Vo>> getCategory2List();
+
 }
 

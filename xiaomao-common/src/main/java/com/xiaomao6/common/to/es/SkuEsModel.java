@@ -8,6 +8,7 @@ import java.util.List;
 
 /**
  * 存放到es中的类型
+ *
  * @ClassName SkuEsModel
  * @Description 简介
  * @Author Micah
@@ -36,7 +37,7 @@ public class SkuEsModel {
      * 内部类
      */
     @Data
-    public static class Attr{
+    public static class Attr {
         private Long attrId;
         private String attrName;
         private String attrValue;

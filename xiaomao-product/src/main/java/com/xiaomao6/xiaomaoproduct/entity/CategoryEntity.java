@@ -5,8 +5,7 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 import lombok.experimental.Accessors;
 
 import java.io.Serializable;
@@ -22,8 +21,7 @@ import java.util.List;
  * @date 2021-09-15 19:16:10
  */
 @Accessors(chain = true)
-@Getter
-@Setter
+@Data
 @TableName("pms_category")
 public class CategoryEntity implements Serializable {
     private static final long serialVersionUID = 1L;

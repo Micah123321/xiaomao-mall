@@ -51,6 +51,7 @@ public class SpuInfoServiceImpl extends ServiceImpl<SpuInfoDao, SpuInfoEntity> i
     @Resource
     ProductAttrValueService productAttrValueService;
 
+
     @Resource
     AttrService attrService;
 
@@ -256,10 +257,11 @@ public class SpuInfoServiceImpl extends ServiceImpl<SpuInfoDao, SpuInfoEntity> i
         //首先获取spu对应的属性,提取处理对应id
         List<ProductAttrValueEntity> attrValueEntities = productAttrValueService.list(new QueryWrapper<ProductAttrValueEntity>().eq("spu_id", spuId));
         List<Long> ids = attrValueEntities.stream().map(ProductAttrValueEntity::getAttrId).collect(Collectors.toList());
-        //根据对应id查询出来所有的属性原数据
-        List<AttrEntity> attrList = attrService.selectByListId(ids);
+
+        List<ProductAttrValueEntity> attrList= productAttrValueService.selectByListId(ids);
+
         //过滤出来要检索的属性,进行属性拷贝
-        List<SkuEsModel.Attr> attrCollect = attrList.stream().filter(e -> e.getSearchType() == 1).map(e -> {
+        List<SkuEsModel.Attr> attrCollect = attrList.stream().filter(e -> ids.contains(e.getAttrId())).map(e -> {
             SkuEsModel.Attr attr = new SkuEsModel.Attr();
             BeanUtils.copyProperties(e, attr);
             return attr;
